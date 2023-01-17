@@ -18,3 +18,12 @@
   width: 105%;
   z-index: -1;
 }
+
+.carousel .slide img {
+  max-height: calc((1000 / 16) * 1rem);
+  object-fit: contain;
+}
+
+.carousel .control-arrow {
+  background: #acacac !important;
+}

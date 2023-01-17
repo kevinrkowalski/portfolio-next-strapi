@@ -1,5 +1,5 @@
 import { fetchDb, prefixSiteUrl } from '../../helpers/helpers'
-import Header from '../../components/Header'
+import Page from '../../layouts/Page'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
@@ -10,20 +10,19 @@ const Project = ({ menuItems, project }) => {
 
   return (
     <>
-      <Header menuItems={menuItems} />
-      <article className='container mx-auto'>
-        <h1 className='font-serif text-6xl mb-4 font-bold highlight inline'>{Title}</h1>
-        <p>{Description}</p>
-        <Carousel showThumbs={false}>
-          {SliderImages.data.map(image => {
-            console.log(image)
-            const { alternativeText, height, width, url } = image.attributes;
-            const imgSrc = prefixSiteUrl(url)
-            console.log(imgSrc)
-            return <Image key={image.id} src={imgSrc} width={width} height={height} alt={alternativeText || Title} />
-          })}
-        </Carousel>
-      </article>
+      <Page menuItems={menuItems}>
+        <article className='container mx-auto'>
+          <h1 className='font-serif text-6xl font-bold highlight inline'>{Title}</h1>
+          <p className='my-8'>{Description}</p>
+          <Carousel showThumbs={false} className="mb-8">
+            {SliderImages.data.map(image => {
+              const { alternativeText, height, width, url } = image.attributes;
+              const imgSrc = prefixSiteUrl(url)
+              return <Image key={image.id} src={imgSrc} width={width} height={height} alt={alternativeText || Title} />
+            })}
+          </Carousel>
+        </article>
+      </Page>
     </>
   )
 }
@@ -31,8 +30,7 @@ const Project = ({ menuItems, project }) => {
 export default Project
 
 export async function getServerSideProps(context) {
-  const menuItems = await fetchDb('menus?filters\[slug\][eq]=main-nav&populate=*')
-  console.log(menuItems)
+  const menuItems = await fetchDb('menus?filters\[slug\][$eq]=main-nav&populate=*')
   const project = await fetchDb(`projects?filters\[slug\][$eq]=${context.query.slug}&populate=SliderImages`)
 
   if (!project || !project.data) {

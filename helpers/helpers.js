@@ -20,4 +20,7 @@ export const fetchDb = async (endpoint, options) => {
 export const getExcerpt = (content, length = 2) => content.split('.').slice(0, length).join('.') + '.'
 
 // Prefix source url
+export const prefixServerUrl = (url) => process.env.NEXT_PUBLIC_SERVER_URL + url
+
+// Prefix site url
 export const prefixSiteUrl = (url) => process.env.NEXT_PUBLIC_SITE_URL + url

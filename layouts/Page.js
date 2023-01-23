@@ -5,7 +5,7 @@ const Page = ({ children, menuItems }) => {
   return (
     <>
       <Header menuItems={menuItems} />
-      <main className="md:mt-24">
+      <main className="md:mt-24 min-h-[85vh]">
         {children}
       </main>
       <Footer />

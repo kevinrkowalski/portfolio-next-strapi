@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'project-pattern': "url('/img/dots.svg')"
+      },
       colors: {
         brand: {
           gray: "#333",

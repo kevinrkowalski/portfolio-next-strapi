@@ -9,10 +9,11 @@ const Header = ({ menuItems }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const windowWidth = useWindowSize().width
   const actualMenuItems = menuItems.data[0].attributes.items.data
+  const isHidden = (isMenuOpen || windowWidth > 768) ? '' : 'hidden';
 
   return (
     <header>
-      <nav className="relative md:fixed md:flex items-center top-0 left-0 bg-white z-10">
+      <nav className="relative md:fixed md:flex items-center top-0 left-0 bg-white z-50">
         <div className="flex justify-between items-center bg-brand-gray p-4 text-white">
           <div className="text-3xl font-bold">
             <Link aria-current="page" href="/">Kevin K.</Link>
@@ -21,7 +22,7 @@ const Header = ({ menuItems }) => {
             <Image src={menuIcon} alt="menu icon" />
           </button>
         </div>
-        <ul className="flex flex-col gap-4 absolute top-full left-0 w-full bg-white md:static md:flex-row md:w-auto" style={{ display: (isMenuOpen || windowWidth > 768) ? '' : 'none' }}>
+        <ul className={`flex flex-col gap-4 absolute top-full left-0 w-full bg-white md:static md:flex-row md:w-auto ${isHidden}`}>
           {actualMenuItems.map((item) => {
             const { id, attributes: { url, title } } = item
             return (

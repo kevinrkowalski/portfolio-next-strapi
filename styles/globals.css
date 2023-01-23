@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @variants responsive {
+    .left-unset {
+      left: unset;
+    }
+  }
+}
+
 .highlight {
   position: relative;
 }
@@ -26,4 +34,28 @@
 
 .carousel .control-arrow {
   background: #acacac !important;
+}
+
+.article h2 {
+  @apply text-4xl lg:text-5xl font-bold font-serif my-4;
+}
+
+.article p {
+  @apply mb-4;
+}
+
+.article ul {
+  @apply list-disc;
+}
+
+.article ol {
+  @apply list-decimal;
+}
+
+.article :is(ul, ol) {
+  @apply ml-8;
+}
+
+.article a {
+  @apply font-bold text-brand-gray;
 }

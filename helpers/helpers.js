@@ -19,8 +19,21 @@ export const fetchDb = async (endpoint, options) => {
 // Convert long text or descriptions into excerpts. Length is equal to the number of sentences to return.
 export const getExcerpt = (content, length = 2) => content.split('.').slice(0, length).join('.') + '.'
 
-// Prefix source url
-export const prefixServerUrl = (url) => process.env.NEXT_PUBLIC_SERVER_URL + url
+const isValidUrl = url => {
+  try {
+    return Boolean(new URL(url))
+  } catch (error) {
+    return false;
+  }
+}
+
+// Prefix source url if relative
+export const prefixServerUrl = (url) => {
+  if (!isValidUrl(url)) {
+    return process.env.NEXT_PUBLIC_SERVER_URL + url
+  }
+  return url
+}
 
 // Prefix site url
 export const prefixSiteUrl = (url) => process.env.NEXT_PUBLIC_SITE_URL + url

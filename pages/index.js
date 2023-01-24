@@ -96,17 +96,17 @@ export default function Home({ menuItems, projects, homePageContent }) {
           <h2 className='font-serif text-5xl mb-4 text-center'>Contact Me</h2>
           <p className='text-center'>I can't wait to discuss your needs for a new website. Let's chat and turn your ideas into a digital reality!</p>
           <div className='flex flex-wrap my-16 gap-20 justify-center items-center text-brand-gray'>
-            <form className='flex flex-col gap-4'>
+            <form className='flex flex-col gap-4' action='https://formspree.io/f/xjvdknyy' method='POST'>
               <div className="relative">
-                <input type="text" id="name" className="w-full py-2 px-4 border border-brand-gray peer" placeholder=" " />
+                <input type="text" id="name" name="name" className="w-full py-2 px-4 border border-brand-gray peer" placeholder=" " />
                 <label htmlFor="name" className="absolute duration-300 transform -translate-y-4 scale-75 top-2 bg-white px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Name</label>
               </div>
               <div className="relative">
-                <input type="email" id="email" className="w-full py-2 px-4 border border-brand-gray peer" placeholder=" " />
+                <input type="email" id="email" name="email" className="w-full py-2 px-4 border border-brand-gray peer" placeholder=" " />
                 <label htmlFor="email" className="absolute duration-300 transform -translate-y-4 scale-75 top-2 bg-white px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Email</label>
               </div>
               <div className="relative">
-                <textarea id="message" className="w-full py-2 px-4 border border-brand-gray peer" placeholder=" " />
+                <textarea id="message" name="message" className="w-full py-2 px-4 border border-brand-gray peer" placeholder=" " />
                 <label htmlFor="message" className="absolute duration-300 transform -translate-y-4 scale-75 top-2 bg-white px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Message</label>
               </div>
               <button type="submit" className='bg-brand-blue py-2'>LET'S TALK</button>

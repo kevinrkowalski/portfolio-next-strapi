@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 @layer utilities {
-  @variants responsive {
-    .left-unset {
-      left: unset;
-    }
+  .left-unset {
+    left: unset;
   }
 }
 

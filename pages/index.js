@@ -1,7 +1,7 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import SeoHead from '../components/SeoHead'
 import Page from '../layouts/Page'
 import { fetchDb, getExcerpt, prefixServerUrl } from "../helpers/helpers"
 import circleDownChevron from '../public/img/circled-down-chevron.svg'
@@ -15,11 +15,10 @@ export default function Home({ menuItems, projects, homePageContent }) {
 
   return (
     <>
-      <Head>
-        <title>Kevin Kowalski | Web Developer & Designer</title>
-        <meta name="description" content="Kevin Kowalski is a web designer and developer for hire. Check out some of my latest work or reach out and start a project!" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SeoHead
+        title="Kevin Kowalski | Web Developer, Designer, Marketer"
+        description="Kevin Kowalski is a web designer and developer for hire. Check out some of my latest work or reach out and start a project!"
+      />
       <Page menuItems={menuItems}>
         <section className="container mx-auto my-16 md:my-32 lg:my-56 p-4 grid md:grid-cols-2 items-center gap-12">
           <div>
@@ -138,10 +137,12 @@ export default function Home({ menuItems, projects, homePageContent }) {
   )
 }
 
-export async function getServerSideProps() {
-  const menuItems = await fetchDb('menus?filters\[slug\][$eq]=main-nav&populate=*')
-  const projects = await fetchDb('projects?populate=FeaturedImage')
-  const homePageContent = await fetchDb('home-page?populate=*')
+export async function getStaticProps() {
+  const [menuItems, projects, homePageContent] = await Promise.all([
+    fetchDb('menus?filters\[slug\][$eq]=main-nav&populate=*'),
+    fetchDb('projects?populate=FeaturedImage'),
+    fetchDb('home-page?populate=*')
+  ])
 
   return {
     props: {

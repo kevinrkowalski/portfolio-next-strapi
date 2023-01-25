@@ -36,9 +36,11 @@ const Project = ({ menuItems, project }) => {
 
 export default Project
 
-export async function getServerSideProps(context) {
-  const menuItems = await fetchDb('menus?filters\[slug\][$eq]=main-nav&populate=*')
-  const project = await fetchDb(`projects?filters\[slug\][$eq]=${context.query.slug}&populate=*`)
+export async function getStaticProps(context) {
+  const [menuItems, project] = await Promise.all([
+    fetchDb('menus?filters\[slug\][$eq]=main-nav&populate=*'),
+    fetchDb(`projects?filters\[slug\][$eq]=${context.params.slug}&populate=*`)
+  ])
 
   if (!project || !project.data) {
     return {
@@ -52,4 +54,10 @@ export async function getServerSideProps(context) {
       project
     }
   }
+}
+
+export async function getStaticPaths() {
+  const projects = await fetchDb(`projects?fields[0]=slug`)
+  const paths = projects.data.map((project) => ({ params: { slug: project.attributes.slug } }))
+  return { paths: paths, fallback: false }
 }

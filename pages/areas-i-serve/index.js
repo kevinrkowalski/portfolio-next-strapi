@@ -32,7 +32,7 @@ const Index = ({ menuItems, locations }) => {
 
 export default Index
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const menuItems = await fetchDb('menus?filters\[slug\][$eq]=main-nav&populate=*')
   const locations = await fetchDb(`locations?fields[0]=locationName&fields[1]=slug`)
 

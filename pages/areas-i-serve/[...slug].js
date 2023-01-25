@@ -33,8 +33,8 @@ const Location = ({ menuItems, location }) => {
 
 export default Location
 
-export async function getServerSideProps(context) {
-  const path = context.query.slug.join('/')
+export async function getStaticProps(context) {
+  const path = context.params.slug.join('/')
   const menuItems = await fetchDb('menus?filters\[slug\][$eq]=main-nav&populate=*')
   const location = await fetchDb(`locations?filters\[slug\][$eq]=${path}&populate=*`)
 
@@ -50,4 +50,13 @@ export async function getServerSideProps(context) {
       location
     }
   }
+}
+
+export async function getStaticPaths() {
+  const locations = await fetchDb(`locations?fields[0]=slug`)
+  const paths = locations.data.map((location) => {
+    const locationPathArray = location.attributes.slug.split('/')
+    return { params: { slug: locationPathArray } }
+  })
+  return { paths: paths, fallback: false }
 }

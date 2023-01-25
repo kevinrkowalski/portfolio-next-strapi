@@ -1,18 +1,15 @@
 import Link from 'next/link'
 import { fetchDb } from '../../helpers/helpers'
 import Page from '../../layouts/Page'
-// import SeoHead from '../../components/SeoHead'
+import SeoHead from '../../components/SeoHead'
 
 const Index = ({ menuItems, locations }) => {
-  console.log(locations)
-
   return (
     <>
-      {/* <SeoHead
-        title={metaTitle}
-        description={metaDescription}
-        robots={metaRobots}
-      /> */}
+      <SeoHead
+        title="Areas I Serve"
+        description="I am available to design and develop websites accross the world. Currently, I'm located in Massachusetts and serve some of the below areas."
+      />
       <Page menuItems={menuItems}>
         <section className='px-4 lg:px-32 xl:px-56'>
           <h1 className='font-serif text-6xl font-bold highlight inline-block mb-8'>Areas I Serve</h1>

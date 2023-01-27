@@ -66,7 +66,7 @@ export default function Home({ menuItems, projects, homePageContent }) {
                 <div className='md:group-[.reverse]:order-first'>
                   <h3 className='font-serif text-4xl mb-4'>{Title}</h3>
                   <p>{getExcerpt(Description)}</p>
-                  <Link href={`/projects/${slug}`} className="inline-block border-4 border-neutral-100 px-4 py-1 my-4 hover:bg-neutral-100 transition duration-300">READ MORE</Link>
+                  <Link href={`/projects/${slug}`} className="inline-block border-4 border-neutral-100 px-4 py-1 my-4 hover:bg-neutral-100 transition duration-300">READ MORE <span className='sr-only'>about my {Title} project</span></Link>
                 </div>
               </div>
             )
